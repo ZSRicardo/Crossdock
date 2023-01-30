@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Generacion Guias";
+}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<div class="row align-items-center justify-content-center mt-3">
+    <div class="col-6">
+        <h4 class="text-center"><u>Generación Guias</u></h4>
+    </div>
+</div>
+
+<div class="row align-items-center justify-content-evenly mt-3">
+
+    <!-- En construccion -->
+    <div class="col-sm-10 d-flex justify-content-center mb-5 mt-2">
+        <img class="img-fluid" src="@Url.Content("~/Common/Imagenes/under.png")" alt="Image pagina no disponible">
+    </div>
+
+
+    <div class="col-sm-10">
+
+        <!-- BODY/FORM -->
+        <form action="/Guias/CargaArchivoGuia" method="post">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+
+

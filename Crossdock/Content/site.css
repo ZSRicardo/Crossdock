@@ -1,0 +1,14 @@
+﻿.form-small-span {
+    font-size: .8rem;
+}
+
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+}
+

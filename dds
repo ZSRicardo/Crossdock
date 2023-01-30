@@ -1,0 +1,141 @@
+[33mcommit c16ad8f6eba87f0cca3375c3bcc46cc218ce7321[m[33m ([m[1;36mHEAD -> [m[1;32mDaniel[m[33m, [m[1;31morigin/Vanessa[m[33m, [m[1;31morigin/Daniel[m[33m, [m[1;32mVanessa[m[33m)[m
+Merge: ee58660 cfaa658
+Author: VanessaCF <55292761+VanessaCF@users.noreply.github.com>
+Date:   Mon Apr 4 17:44:59 2022 -0500
+
+    Merge branch 'Vanessa' of https://github.com/taimingo/Crossdock into Vanessa
+
+[33mcommit ee5866067201b90f32fb0b128b8312dc380f4423[m
+Author: VanessaCF <55292761+VanessaCF@users.noreply.github.com>
+Date:   Mon Apr 4 17:41:23 2022 -0500
+
+    controlador usuarios
+
+[33mcommit cfaa658b55a1a915e3e953494d5d5cf5f48be95e[m
+Merge: d25bcb2 f274b50
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Mon Apr 4 14:35:43 2022 -0500
+
+    Merge branch 'david' into Vanessa
+
+[33mcommit f274b50e442921200d2020a2f8ea443145e2217b[m
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Mon Apr 4 14:34:24 2022 -0500
+
+    actualizacion de pdf utilities, logo y margenes
+
+[33mcommit f3f6cdf731600599154ed652378d63b3919f4988[m
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Fri Apr 1 18:29:11 2022 -0600
+
+    agregado modelo de datos para pdf guia
+
+[33mcommit d25bcb2af7c426c3984b8946bac3b7a97c5a30ea[m
+Author: VanessaCF <55292761+VanessaCF@users.noreply.github.com>
+Date:   Fri Apr 1 17:44:06 2022 -0600
+
+    Correccion de comands
+
+[33mcommit c16279cddc668976f4249d2a25506a4ecc09a1c2[m
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Fri Apr 1 14:52:46 2022 -0600
+
+    cambios/correcciones en tipos de datos durante merge
+
+[33mcommit 0d41be9878095f50b011d45512b32e90d2109387[m
+Merge: 3182cad 0998da0
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Fri Apr 1 14:37:14 2022 -0600
+
+    Merge branch 'david' into Vanessa
+
+[33mcommit 3182cadfce22418f57fb7353aedc6a2f9f1cf958[m
+Merge: 3de2f24 73aaa47
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Fri Apr 1 14:35:20 2022 -0600
+
+    merge a branch de david
+
+[33mcommit 0998da064a2756671d9255311bed1228c73048c1[m
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Fri Apr 1 14:21:18 2022 -0600
+
+    agregado logo taimingo a pdf
+
+[33mcommit 3de2f24bcb30c1432d77c7b46770731085bf3ce8[m
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Thu Mar 31 17:57:52 2022 -0600
+
+    agregado template de class library
+
+[33mcommit 73aaa4787f54f356f398333f3aeaff57c5103b23[m
+Author: VanessaCF <55292761+VanessaCF@users.noreply.github.com>
+Date:   Thu Mar 31 17:53:41 2022 -0600
+
+    commands clientes,Delivery,guias,Destinatarios,,historialsms,operadores
+
+[33mcommit 5624378522eefb0553277b374feb1ce3761f95f7[m
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Thu Mar 31 13:25:35 2022 -0600
+
+    agregada generacion guia sin url ni documento
+
+[33mcommit ddb4f27a8fbd093d74a4fb62cb9234592c9e6e3b[m
+Author: VanessaCF <55292761+VanessaCF@users.noreply.github.com>
+Date:   Wed Mar 30 18:47:37 2022 -0600
+
+    models terminados y commands(bodegas, anaqueles,clientes,condiciones,delivery)
+
+[33mcommit c9c11ea8ed11a4307d4db060ffeead1bec3df967[m
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Wed Mar 30 18:11:09 2022 -0600
+
+    cambio a view model de guia taimingo
+
+[33mcommit 07e2a02b4806a5300c7400fa22d675e878c44710[m
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Tue Mar 29 17:59:21 2022 -0600
+
+    agregado form y viewmodel de generacion de guia
+
+[33mcommit 7299ef4d4b8c96656ccc36b3818f0ba4821c6627[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;31morigin/DarioM[m[33m, [m[1;32mmain[m[33m, [m[1;32mdavid[m[33m)[m
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Tue Mar 29 13:58:29 2022 -0600
+
+    agregados modelos/template para generacion de guia
+
+[33mcommit 6f0a223ad6d5e9074d7409e9b59ba93f433bdb4c[m
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Mon Mar 28 17:40:40 2022 -0600
+
+    agregada context/conexion mysql
+
+[33mcommit 875c4ead7c6b067988772f6bc94601bd683f208a[m
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Wed Mar 23 17:41:51 2022 -0600
+
+    agregado layout para login
+
+[33mcommit 3685c08e5762f2cba04098cea8b1ad93ef336300[m
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Tue Mar 22 19:30:57 2022 -0600
+
+    cambio de ruta en startup page
+
+[33mcommit 456a799236f20e3bfc595ccfa42c39dab46a9540[m
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Fri Mar 18 17:51:26 2022 -0600
+
+    agregado formulario inicial de generacion guia
+
+[33mcommit a460b8f8a951e540271ff6596f30b86c44e00496[m
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Wed Mar 16 13:09:02 2022 -0600
+
+    cambios de diseno en layout
+
+[33mcommit 2d5886ed5e3cb5b0ef26483c0a868d04a8a75a58[m
+Author: davidtaimingo <dnarvaez@taimingo.com>
+Date:   Wed Mar 16 09:35:01 2022 -0600
+
+    plantilla inicial

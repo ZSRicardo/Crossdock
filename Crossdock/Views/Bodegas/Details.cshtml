@@ -1,0 +1,94 @@
+﻿@model Crossdock.Models.Bodegas
+
+@{
+    ViewBag.Title = "Details";
+}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+<div class="row align-items-center justify-content-center mt-3">
+    <div class="col-6 mt-3">
+        <h4 class="text-center">Detalles de bodega</h4>
+    </div>
+</div>
+
+<div class="row align-items-center justify-content-center mt-3">
+    <div class="col-md-7">
+        <form method="post">
+            <div class="accordion-item">
+                <div class="accordion-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", Disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", Disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control", Disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Calle, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.Calle, new { htmlAttributes = new { @class = "form-control", Disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Calle, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.NumeroExt, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.NumeroExt, new { htmlAttributes = new { @class = "form-control", Disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.NumeroExt, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.NumeroInt, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.NumeroInt, new { htmlAttributes = new { @class = "form-control", Disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.NumeroInt, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Colonia, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.Colonia, new { htmlAttributes = new { @class = "form-control", Disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Colonia, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.CodigoPostal, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.CodigoPostal, new { htmlAttributes = new { @class = "form-control", Disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.CodigoPostal, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.HorarioInicio, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.HorarioInicio, new { htmlAttributes = new { @class = "form-control", Disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.HorarioInicio, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.HorarioFinal, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.HorarioFinal, new { htmlAttributes = new { @class = "form-control", Disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.HorarioFinal, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="row align-items-center justify-content-center mt-3">
+                        <div class="col-6 mt-3">
+                            <div class="d-flex justify-content-evenly mt-4 mb-5 btn-group">
+                                @Html.ActionLink(" Editar ", "Edit", new { id = Model.BodegaID }, new { @class = "btn btn-outline-secondary" })
+                                @Html.ActionLink(" Regresar ", "Index", new { area = "" }, new { @class = "btn btn-outline-warning" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

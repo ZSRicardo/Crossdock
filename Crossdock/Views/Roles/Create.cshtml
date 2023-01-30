@@ -1,0 +1,215 @@
+﻿@model Crossdock.Models.Roles
+
+@{ViewBag.Title = "Create";}
+
+<div class="row align-items-center justify-content-center mt-3">
+    <div class="col-6 mt-3">
+        <h4 class="text-center">Nuevo registro</h4>
+    </div>
+</div>
+
+<div class="row align-items-center justify-content-center mt-3">
+    <div class="col-md-7">
+        <form method="post">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="accordion-item">
+                <div class="accordion-body">
+
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "form-label col-sm" })
+                        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", @placeholder = "Tipo de usuario" } })
+                        @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                    </div>
+
+                    <h5>Guías</h5>
+                    <span> | Generación de Guías: </span> @Html.CheckBoxFor(m => m.GeneracionGuias)
+                    <br />
+
+                    <br />
+                    <h5>Historial De Guías</h5>
+                    <span> | Historial de Guías: </span> @Html.CheckBoxFor(m => m.HistorialGuias)
+                    <br />
+
+                    <br />
+                    <h5>Guías Prepagadas</h5>
+                    <span> | Guías Prepagadas: </span> @Html.CheckBoxFor(m => m.GuiasPrepagadas)
+                    <br />
+
+                    <br />
+                    <h5>Paquetes por Llegar</h5>
+                    <span> | Paquetes por Llegar: </span> @Html.CheckBoxFor(m => m.Notificaciones)
+                    <br />
+
+                    <br />
+                    <h5>CEDIS</h5>
+                    <span> | Recepción de Paquetes: </span> @Html.CheckBoxFor(m => m.RecepcionPaquetes)
+                    <br />
+
+                    <br />
+                    <h5>Paquetes</h5>
+                    <span> | Seguimiento de Paquetes: </span> @Html.CheckBoxFor(m => m.AsignacionTareas)
+                    <br />
+
+                    <br />
+                    <h5>Historial de Paquetes</h5>
+                    <span> | Historial de Paquetes: </span> @Html.CheckBoxFor(m => m.HistorialPaquetes)
+                    <br />
+
+                    <br />
+                    <h5>Asignación de Tareas</h5>
+                    <span> | Asignación de Tareas: </span> @Html.CheckBoxFor(m => m.AsignacionTareas)
+                    <br />
+
+                    <br />
+                    <h5>Historial de Tareas</h5>
+                    <span> | Historial de Tareas: </span> @Html.CheckBoxFor(m => m.HistorialTareas)
+                    <br />
+
+                    <br />
+                    <h5>Catálogo Usuarios</h5>
+                    <span> | Visualizar: </span> @Html.CheckBoxFor(m => m.UsuariosVisualizar)
+
+                    <br />
+
+                    <br />
+                    <h5>Catálogo Bodegas</h5>
+                    <span> | Visualizar: </span> @Html.CheckBoxFor(m => m.BodegasVisualizar)
+                    @*<span> | Crear: </span> @Html.CheckBoxFor(m => m.BodegasCrear)
+                        <span> | Editar: </span> @Html.CheckBoxFor(m => m.BodegasEditar)
+                        <span> | Eliminar: </span> @Html.CheckBoxFor(m => m.BodegasEliminar)*@
+                    <br />
+
+                    <br />
+                    <h5>Catálogo Clientes</h5>
+                    <span> | Visualizar: </span> @Html.CheckBoxFor(m => m.ClientesVisualizar)
+                    @*<span> | Crear: </span> @Html.CheckBoxFor(m => m.ClientesCrear)
+                        <span> | Editar: </span> @Html.CheckBoxFor(m => m.ClientesEditar)
+                        <span> | Eliminar: </span> @Html.CheckBoxFor(m => m.ClientesEliminar)*@
+                    <br />
+
+                    <br />
+                    <h5>Catálogo Condiciones</h5>
+                    <span> | Visualizar: </span> @Html.CheckBoxFor(m => m.CondicionesVisualizar)
+                    @*<span> | Crear: </span> @Html.CheckBoxFor(m => m.CondicionesCrear)
+                        <span> | Editar: </span> @Html.CheckBoxFor(m => m.CondicionesEditar)
+                        <span> | Eliminar: </span> @Html.CheckBoxFor(m => m.CondicionesEliminar)*@
+                    <br />
+
+                    <br />
+                    <h5>Catálogo Delivery</h5>
+                    <span> | Visualizar: </span> @Html.CheckBoxFor(m => m.DeliveryVisualizar)
+                    @*<span> | Crear: </span> @Html.CheckBoxFor(m => m.DeliveryCrear)
+                        <span> | Editar: </span> @Html.CheckBoxFor(m => m.DeliveryEditar)
+                        <span> | Eliminar: </span> @Html.CheckBoxFor(m => m.DeliveryEliminar)*@
+                    <br />
+
+                    <br />
+                    <h5>Catálogo Estatus Paquetes </h5>
+                    <span> | Visualizar: </span> @Html.CheckBoxFor(m => m.EstatusPaVisualizar)
+                    @*<span> | Crear: </span> @Html.CheckBoxFor(m => m.EstatusPaCrear)
+                        <span> | Editar: </span> @Html.CheckBoxFor(m => m.EstatusPaEditar)
+                        <span> | Eliminar: </span> @Html.CheckBoxFor(m => m.EstatusPaEliminar)*@
+                    <br />
+
+                    <br />
+                    <h5>Catálogo Estatus Tareas</h5>
+                    <span> | Visualizar: </span> @Html.CheckBoxFor(m => m.EstatusTaVisualizar)
+                    @*<span> | Crear: </span> @Html.CheckBoxFor(m => m.EstatusTaCrear)
+                        <span> | Editar: </span> @Html.CheckBoxFor(m => m.EstatusTaEditar)
+                        <span> | Eliminar: </span> @Html.CheckBoxFor(m => m.EstatusTaEliminar)*@
+                    <br />
+
+                    <br />
+                    <h5>Catálogo Operadores</h5>
+                    <span> | Visualizar: </span> @Html.CheckBoxFor(m => m.OperadoresVisualizar)
+                    @*<span> | Crear: </span> @Html.CheckBoxFor(m => m.OperadoresCrear)
+                        <span> | Editar: </span> @Html.CheckBoxFor(m => m.OperadoresEditar)
+                        <span> | Eliminar: </span> @Html.CheckBoxFor(m => m.OperadoresEliminar)*@
+                    <br />
+
+                    <br />
+                    <h5>Catálogo Tipos de Operador</h5>
+                    <span> | Visualizar: </span> @Html.CheckBoxFor(m => m.TopVisualizar)
+                    @*<span> | Crear: </span> @Html.CheckBoxFor(m => m.TopCrear)
+                        <span> | Editar: </span> @Html.CheckBoxFor(m => m.TopEditar)
+                        <span> | Eliminar: </span> @Html.CheckBoxFor(m => m.TopEliminar)*@
+                    <br />
+
+                    <br />
+                    <h5>Catálogo Roles</h5>
+                    <span> | Visualizar: </span> @Html.CheckBoxFor(m => m.RolesVisualizar)
+                    @*<span> | Crear: </span> @Html.CheckBoxFor(m => m.RolesCrear)
+                        <span> | Editar: </span> @Html.CheckBoxFor(m => m.RolesEditar)
+                        <span> | Eliminar: </span> @Html.CheckBoxFor(m => m.RolesEliminar)*@
+                    <br />
+
+                    <br />
+                    <h5>Catálogo Tipo de Entrega</h5>
+                    <span> | Visualizar: </span> @Html.CheckBoxFor(m => m.TenVisualizar)
+                    @*<span> | Crear: </span> @Html.CheckBoxFor(m => m.TenCrear)
+                        <span> | Editar: </span> @Html.CheckBoxFor(m => m.TenEditar)
+                        <span> | Eliminar: </span> @Html.CheckBoxFor(m => m.TenEliminar)*@
+                    <br />
+
+                    <br />
+                    <h5>Catálogo Unidades</h5>
+                    <span> | Visualizar: </span> @Html.CheckBoxFor(m => m.UnidadesVisualizar)
+                    @*<span> | Crear: </span> @Html.CheckBoxFor(m => m.UnidadesCrear)
+                        <span> | Editar: </span> @Html.CheckBoxFor(m => m.UnidadesEditar)
+                        <span> | Eliminar: </span> @Html.CheckBoxFor(m => m.UnidadesEliminar)*@
+                    <br />
+
+                    <br />
+                    <h5>Catálogo Tipo de Unidades</h5>
+                    <span> | Visualizar: </span> @Html.CheckBoxFor(m => m.TunVisualizar)
+                    @*<span> | Crear: </span> @Html.CheckBoxFor(m => m.TunCrear)
+                        <span> | Editar: </span> @Html.CheckBoxFor(m => m.TunEditar)
+                        <span> | Eliminar: </span> @Html.CheckBoxFor(m => m.TunEliminar)*@
+                    <br />
+
+                    <br />
+                    <h5>Catálogo Zonas</h5>
+                    <span> | Visualizar: </span> @Html.CheckBoxFor(m => m.ZonasVisualizar)
+                    @*<span> | Crear: </span> @Html.CheckBoxFor(m => m.ZonasCrear)
+                        <span> | Editar: </span> @Html.CheckBoxFor(m => m.ZonasEditar)
+                        <span> | Eliminar: </span> @Html.CheckBoxFor(m => m.ZonasEliminar)*@
+                    <br />
+
+                    <br />
+                    <h5>Catálogo Motivos de Devolución</h5>
+                    <span> | Visualizar: </span> @Html.CheckBoxFor(m => m.MotivosVisualizar)
+                    @*<span> | Crear: </span> @Html.CheckBoxFor(m => m.MotivosCrear)
+                        <span> | Editar: </span> @Html.CheckBoxFor(m => m.MotivosEditar)
+                        <span> | Eliminar: </span> @Html.CheckBoxFor(m => m.MotivosEliminar)*@
+                    <br />
+
+                    <br />
+                    <h5>Catálogo Coberturas</h5>
+                    <span> | Visualizar: </span> @Html.CheckBoxFor(m => m.CoberturasVisualizar)
+                    @*<span> | Crear: </span> @Html.CheckBoxFor(m => m.CoberturasCrear)
+                        <span> | Editar: </span> @Html.CheckBoxFor(m => m.CoberturasEditar)
+                        <span> | Eliminar: </span> @Html.CheckBoxFor(m => m.CoberturasEliminar)*@
+
+                    <hr />
+
+                    <div class="row align-items-center justify-content-center mt-3">
+                        <div class="col-6 mt-3">
+                            <div class="d-flex justify-content-evenly mt-4 mb-5 btn-group">
+                                <input type="submit" value="Registrar" class="btn  btn-outline-primary" />
+                                @Html.ActionLink("Regresar", "Index", new { area = "" }, new { @class = "btn btn-outline-warning" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+}

@@ -1,0 +1,72 @@
+﻿@model Crossdock.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+                 
+    <title>Login</title>
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login100">
+                    <span class="login100-form-title p-b-26">
+                        <img src="~/Common/Imagenes/TAIMIMGO 2022 SLOGAN_Mesa de trabajo 1 (1).png" alt="Sample Image" width="250" />
+                        crossdock
+                       
+                    </span>
+                  
+                    @if (@TempData["Alert"] != null)
+                    {
+                        <div class="mt-2 alert alert-dismissible fade show @TempData["AlertCssClass"]" role="alert">
+                            @TempData["Alert"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+                    <form action="@Url.Action("Login", "Home")" method="post" class="login100-form validate-form">
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="wrap-input100 validate-input" data-validate="El correo electrónico válido es: a@b.c">
+
+                            <input class="input100" type="text" name="email">
+                            <span class="focus-input100" data-placeholder="Email"></span>
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Ingresa la contraseña">
+                            <span class="btn-show-pass">
+                                <i class="zmdi zmdi-eye"></i>
+                            </span>
+                            <input class="input100" type="password" name="Password">
+                            <span class="focus-input100" data-placeholder="Contraseña"></span>
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+
+                                <button type="submit" class="login100-form-btn">Ingresar</button>
+                            </div>
+                        </div>
+
+                        <div class="text-center p-t-115">
+                            @* <span class="txt1">
+           Olvide mi contraseña
+        </span>*@
+
+                            @*<a class="txt2" href="~/RecuperaPasswords/Index">
+                                
+                                Restrablecer contraseña
+                            </a>*@
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="dropDownSelect1"></div>
+

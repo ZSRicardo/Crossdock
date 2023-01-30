@@ -1,0 +1,71 @@
+﻿@model Crossdock.Models.GuiaPrepagada
+
+@{
+    ViewBag.Title = "AgregarGuias";
+}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<div class="row align-items-center justify-content-center mt-3">
+    <div class="col-6 mt-3">
+        <h4 class="text-center">Nuevo registro</h4>
+    </div>
+</div>
+
+<div class="row align-items-center justify-content-center mt-3">
+    <div class="col-md-7">
+        <form method="post">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="accordion-item">
+                <div class="accordion-body">
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.ClienteID, htmlAttributes: new { @class = "form-label" })
+                        @Html.DropDownListFor(model => model.ClienteID, ViewBag.L_Clientes as SelectList, "Selecciona un Cliente", new { @class = "form-control", @placeholder = "Cliente" })
+                        @Html.ValidationMessageFor(model => model.ClienteID, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.NumeroGuias, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.NumeroGuias, new { htmlAttributes = new { @class = "form-control", @placeholder = "Numero de Guias" } })
+                        @Html.ValidationMessageFor(model => model.NumeroGuias, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.FechaVenciminto, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.FechaVenciminto, new { htmlAttributes = new { @class = "form-control", type = "text", id = "txtfInicial", name = "fechaIngresoInicio", @placeholder = "Fecha de Vencimiento" } })
+                        @Html.ValidationMessageFor(model => model.FechaVenciminto, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="row align-items-center justify-content-center mt-3">
+                        <div class="col-6 mt-3">
+                            <div class="d-flex justify-content-evenly mt-4 mb-5 btn-group">
+                                <div class="mb-2">
+
+                                    @Html.ActionLink("Regresar", "Index", new { area = "" }, new { @class = "btn btn-warning" })
+                                </div>
+                                <div class="mb-2">
+                                    <button class="btn btn-success" id="guiaConfSubmit" type="submit">Aceptar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/bootstrap-datepicker.es.js" charset="UTF-8"></script>
+    <script>
+        $("#txtfInicial").datepicker({ dateFormat: 'dd-MM-yy' })
+    </script>
+
+}
+
+

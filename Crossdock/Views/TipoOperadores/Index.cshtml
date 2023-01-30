@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Crossdock.Models.TipoOperadores>
+
+@{
+    ViewBag.Title = "Index";
+}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<h1></h1>
+<div class="card mb-4">
+    <div class="card-header">
+        <div class="row aling-item-end">
+            <div class="col-lg-6">
+                <div class="mt-2">
+                    <h2 class="mt-3"><u>Tipo de operadores</u></h2>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="mt-2" style="float:right;">
+                    @Html.ActionLink("Nuevo registro", "Create", new { area = "" }, new { @class = "btn btn-primary", style = "display:" + ViewBag.TopCrear })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="mt-5">
+            <table id="tablaPaquetes" class="display mt-2" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripción</th>
+                        <th>Editar</th>
+                        <th>Detalles</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+         var tabladata;
+        $(document).ready(function () {
+
+            tabladata = $("#tablaPaquetes").DataTable(
+                {
+                    resposive: true,
+                    ordering: true,
+                    searching: true,
+                    scrollY: "300px",
+                    scrollX: true,
+                    scrollCollapse: true,
+
+                    "ajax":
+                    {
+                        url: '@Url.Action("Listaoperadores", "TipoOperadores")',
+                        type: "GET",
+                        dataType: "json"
+                    },
+                    "columns":
+                        [
+                            { "className": "text-center", "data": "ID_Temporal" },
+                            { data: "Descripcion" },
+                            {
+                                "className": "text-center", "data": "TipoOperadorID",
+                                "render": function (data, type, row, meta) {
+                                    return '<a href=./Edit/' + data + ' <i class="btn bi bi-pen-fill" style="font-size: 25px; display: true;"></i></a></a>';
+                                },
+                            },
+                            {
+                                "className": "text-center", "data": "TipoOperadorID",
+                                "render": function (data, type, row, meta) {
+                                    return '<a href=./Details/' + data + ' <i class="btn bi-file-earmark-text-fill" style="font-size: 25px; display: true;"></i></a></a>';
+                                },
+                            },
+                            {
+                                "className": "text-center", "data": "TipoOperadorID",
+                                "render": function (data, type, row, meta) {
+                                    return '<a href=./Delete/' + data + ' <i class="btn bi bi-trash-fill" style="font-size: 25px; display: true;"></i></a></a>';
+                                },
+                            },
+                        ],
+
+                    "language":
+                    {
+                        "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                    }
+
+                });
+        })
+    </script>

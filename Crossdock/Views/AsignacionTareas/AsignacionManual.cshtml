@@ -1,0 +1,304 @@
+﻿@model IEnumerable<Crossdock.Models.Tareas>
+@{
+    ViewBag.Title = "AsignacionManual";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <system.webServer>
+        <httpProtocol>
+            <customHeaders>
+                <add name="Access-Control-Allow-Origin" value="*" />
+                <add name="Access-Control-Allow-Methods" value="GET,POST,OPTIONS" />
+                <add name="Access-Control-Allow-Headers" value="Content-Type" />
+            </customHeaders>
+        </httpProtocol>
+    </system.webServer>
+</configuration>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+</head>
+
+<body>
+
+
+    <h1></h1>
+    <div class="card mb-4">
+
+        <div class="card-header">
+            <div>
+                <div class="container-fluid">
+                    <b>
+                        <FONT size="5" class="mt-1" style="float:left;">
+                            Asignación de Tareas
+                        </FONT>
+                    </b>
+                    <br /><br />
+                    <div class="d-flex justify-content-end" style="gap:20px">
+                        <div class="mt-2" style="float:right;">
+                            @Html.ActionLink("Asignar Tarea", "Inicia_Vista_Seleccion", new { area = "" }, new { @class = "btn btn-primary ", style = "float:right;" })
+                        </div>
+                        <div class="mt-2" style="float:right;">
+                            <button class="btn btn-success" type="submit" onclick="exportar();"> <i class="bi bi-filetype-xlsx "></i>   Exportar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+
+
+
+
+                <div class="container-fluid mt-5">
+                    <table id="tablaPaquetes" class="display mt-2" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre de Operador</th>
+                                <th>Celular del operador</th>
+                                <th>Numero de Tareas</th>
+                                <th>Detalles</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+</body>
+
+@{
+    if (ViewBag.Message == "Selecciona_Operador")
+
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                Selecciona_Operador();
+            };
+        </script>
+    }
+    if (ViewBag.Message == "Selecciona_paquete")
+
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                Selecciona_paquete();
+            };
+        </script>
+    }
+
+}
+
+@Html.Partial("Tareas_Asignadas")
+
+@section Scripts{
+
+    <script>
+
+         var tabladata;
+        $(document).ready(function () {
+
+            tabladata = $("#tablaPaquetes").DataTable(
+                {
+                    resposive: true,
+                    ordering: true,
+                    searching: true,
+                    scrollY: "300px",
+                    scrollX: true,
+                    scrollCollapse: true,
+                    lengthChange: true,
+
+                    "ajax":
+                    {
+                        url: '@Url.Action("ListaTareasAsignadas", "AsignacionTareas")',
+                        type: "GET",
+                        dataType: "json"
+                    },
+                    "columns":
+                        [
+                            { "className": "text-center", "data": "ID_Temporal" },
+                            { "className": "text-center", "data": "Usuario_Nombre" },
+                            { data: "Celular" },
+                            { data: "Numero_Tareas" },
+                            {
+                                "className": "text-center",
+                                "data": "Usuario_Nombre",
+                                "render": function (data, type, row, meta) {
+                                    return '<button class="btn bi-file-earmark-text-fill" type="button" id="btn-Detalles" onclick="detalles(' + "'" + data + "'" + ')"data-toggle="modal" data-target="#modalHistorial" data-backdrop="static" data-keyboard="false" style="font-size: 25px; display: true;"></button>'
+                                }
+                            },
+                        ],
+                    "language":
+                    {
+                        "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                    }
+
+                });
+
+        })
+
+
+
+        $("#tablaPaquetes tbody").on("click", '.btn-editar', function () {
+            var filaseleccionada = $(this).closest("tr");
+            var data = tabladata.row(filaseleccionada).data();
+            console.log(data);
+            var url = '@Url.Action("Editar", "AsignacionTareas")' + "?id=" + data.StringFecha_Asignacion
+            tabladata.ajax.url(url).load();
+        })
+
+
+        $("#btnFiltrar").on("click", function () {
+            var Operador = document.getElementById('L_Operadores').value;
+            //(string fecha_inicio, string fecha_final, string )
+            var url = '@Url.Action("ListaTareasAsignadasFiltro", "AsignacionTareas")' + "?Operador=" + Operador
+
+
+            if (Operador == "") {
+                tipo_Erroneo();
+            }
+            tabladata.ajax.url(url).load();
+
+        })
+
+        function Rango_erroneo() {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Selecciona un rango de Fechas valido.',
+                width: '40%',
+                showConfirmButton: false,
+                position: 'top',
+            })
+        }
+        function tipo_Erroneo() {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Selecciona un tipo de Fecha o un Cliente',
+                width: '40%',
+                showConfirmButton: false,
+                position: 'top',
+            })
+        }
+    </script>
+
+    <script>
+
+        function Selecciona_Operador() {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Selecciona un operador',
+                width: '40%',
+                showConfirmButton: false,
+                position: 'top',
+            })
+        }
+
+        function Selecciona_paquete() {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Selecciona por lo menos un paquete',
+                width: '40%',
+                showConfirmButton: false,
+                position: 'top',
+            })
+        }
+
+         function exportar()
+        {
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Exportar", "AsignacionTareas")',
+
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                }).done(function (data)
+                {
+
+                     if (data.fileName != "") {
+                     //use window.location.href for redirect to download action for download the file
+                     window.location.href = "@Url.RouteUrl(new
+                      { Controller = "AsignacionTareas", Action = "Download"})/?file=" + data.fileName;
+                         }
+                });
+
+        }
+
+     var tabladata;
+        $(document).ready(function () {
+            tabladata = $("#tablaTareas").DataTable(
+                {
+                    resposive: true,
+                    ordering: false,
+                    searching: false,
+                    lengthChange:true,
+                    "columns":
+                        [
+                            { data: "C_Razon_Social" },
+                            { data: "Guia" },
+                            { data: "fechaAsignacion" },
+                            { data: "Estatus" },
+                            { data: "Palabra_Clave" },
+                            {
+                                data: "Estatus", render: function (data) {
+
+                                    if (data != "Asignada") { return data = "<p style='color:red'>No se puede eliminar</p>"}
+                                    else {
+                                      return  "<button class='btn bi bi-trash-fill btn-editar' type='button'" +
+                                        "style = 'font-size:25px; display: true; '  onclick='Eliminar(" + data + ")'></button > " }
+
+
+                                }
+
+                            }
+                        ],
+                    "language":
+                    {
+                        "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                    }
+
+                });
+
+            $("#tablaTareas tbody").on("click", '.btn-editar', function () {
+                var filaseleccionada = $(this).closest("tr");
+                var data = tabladata.row(filaseleccionada).data();
+                console.log(data);
+                Eliminar(data);
+            })
+
+            function Eliminar(data)
+            {
+                var url = '@Url.Action("Eliminar_Tarea", "AsignacionTareas")' +
+                    "?guia=" + data.Guia +
+                    "&fecha_asignacion=" + data.fechaAsignacion +
+                    "&operador=" + data.Usuario_Nombre
+
+                tabladata.ajax.url(url).load();
+
+            }
+
+
+
+        })
+
+
+
+
+    </script>
+
+
+}
+

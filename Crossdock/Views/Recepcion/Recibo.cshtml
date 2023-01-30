@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Crossdock.Models.DatosGuiaViewModel>
+
+@{
+    ViewBag.Title = "Recibo";
+}
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="row align-items-center justify-content-center mt-3">
+    <div class="col-10">
+        <h2 class="mb-5 text-center">Recibo</h2>
+        @if (@TempData["Alert"] != null)
+        {
+            <div class="mt-2 alert alert-dismissible fade show @TempData["AlertCssClass"]" role="alert">
+                @TempData["Alert"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        @{
+            var wgrid = new WebGrid(source: Model, canSort: false, rowsPerPage: 10);
+        }
+
+        <div class="row">
+            <div class="Col-md-6">
+                <div class="table-responsive">
+                    @wgrid.GetHtml(mode: WebGridPagerModes.All, firstText: "<<Primera", previousText: "<Anterior", nextText: "Siguiente>", lastText: "última>>",
+                                                   tableStyle: "table table-bordered table-striped text-center", htmlAttributes: new { id = "wgrid" },
+                                                      columns: wgrid.Columns(
+                                                         wgrid.Column(columnName: "Guia", header: "Número Guía"),
+                                                         wgrid.Column(columnName: "DestinatarioDireccion", header: "Dirección de Entrega"),
+                                                         wgrid.Column(columnName: "DestinatarioCelular", header: "Celular"),
+                                                         wgrid.Column(columnName: "DestinatarioNombre", header: "Destinatario"),
+                                                         wgrid.Column(columnName: "Detalles", header: "Estatus", format: (item) =>
+                                                         {
+                                                             if (item.Detalles == 0)
+                                                             {
+                                                                 return Html.DisplayName("Aceptado");
+                                                             }
+                                                             else
+                                                             {
+                                                                 return Html.DisplayName("Devolución");
+                                                             }
+                                                         })))
+                    </div>
+                </div>
+            </div>
+        <ul class="list-group list-group-flush mt-3">
+            <li class="list-group-item">Ingresados para recepcion: @ViewBag.Ingresados</li>
+            <li class="list-group-item">Paquetes devueltos: @(ViewBag.Devueltos != null ? ViewBag.Devueltos : 0)</li>
+            <li class="list-group-item">Total: @ViewBag.Total</li>
+        </ul>
+
+        <div class="btn col-md-11">
+
+            <div class="col-lg-7">
+                <div class="mt-2">
+                    <button class="btn btn-success" type="button" onclick="location.href='@Url.Action("ReciboAceptar", "Recepcion")'">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="mt-2">
+                    <button class="btn btn-danger" type="button" onclick="location.href='@Url.Action("Cancelar", "Recepcion")'">
+                        Cancelar operación
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+}

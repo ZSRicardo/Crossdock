@@ -1,0 +1,272 @@
+﻿
+@{
+    ViewBag.Title = "Index_Administrador";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+<h1></h1>
+<div class="card mb-2">
+    <div class="card-header">
+        <div class="row aling-item-end">
+            <div class="col-lg-6">
+                <div class="mt-2">
+                    <h2 class="mt-3"><u>Historial de paquetes terminados</u></h2>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="mt-2" style="float:right;">
+                    <button class="btn btn-success" type="submit" onclick="exportar();"> <i class="bi bi-filetype-xlsx "></i>   Exportar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    @if (@TempData["Alert"] != null)
+    {
+        <div class="alert alert-danger" role="alert @TempData["AlertCssClass"]">
+            @TempData["Alert"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    <div class=" card mb-5  ">
+        <div class="card-body">
+            <div class="row aling-item-end">
+                <div class="container-fluid">
+                    <div class="card col-sm-2">
+                        <div class="form-label"><label>Filtrar por fecha de:</label></div>
+                        <div class="form-check m-4">
+                            <input class="form-check-input" type="radio" name="entregaingreso" id="aceptacion" checked=@ViewBag.rEntrega>
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Recepción
+                            </label>
+                        </div>
+                        <div class="form-check m-4">
+                            <input class="form-check-input" type="radio" name="entregaingreso" id="termino" checked=@ViewBag.rIngreso>
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Entrega
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="mt-5">
+                            <label class="form-label">Fecha inicio: </label>
+                            <input class="form-control" value=@ViewBag.DFechaInicial type="text" id="txtfInicial" name="fechaIngresoInicio" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="mt-5">
+                            <label class="form-label">Fecha final: </label>
+                            <input class="form-control" value=@ViewBag.DFechaFinal type="text" id="txtfFinal" name="fechaEntregaFinal" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="mt-5">
+                            <label class="form-label">Cliente:</label>
+                            @Html.DropDownList(name: "List_Clientes", selectList: null, (string)ViewBag.DCliente, new { @class = "form-control", id = "Cliente" })
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="mt-5">
+                            <label class="form-label">Estatus:</label>
+                            @Html.DropDownList(name: "List_Estatus", selectList: null, (string)ViewBag.DEstatus, new { @class = "form-control", id = "Estatus" })
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <div class="mt-5">
+                            <br />
+                            <button class="btn btn-primary" type="button" id="btnFiltrar">Filtrar</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <div class="mt-5">
+                            <br />
+                            @Html.ActionLink("Limpiar", "LimpiarT", new { area = "" }, new { @class = "btn btn-danger" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <table id="tablaPaquetes" class="display mt-2" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Numero de Guia</th>
+                    <th>Palabra Clave</th>
+                    <th>Cliente</th>
+                    <th>Fecha de recepcion</th>
+                    <th>Fecha de entrega</th>
+                    <th>Detalles</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+@Html.Partial("DetallesPaquete")
+@section scripts{
+
+    <script>
+
+        var tabladata;
+        $(document).ready(function () {
+            $("#txtfInicial").datepicker({ dateformat: 'yyyy-mm-dd' }).datepicker()
+            $("#txtfFinal").datepicker({ dateformat: 'yyyy-mm-dd' }).datepicker()
+
+            tabladata = $("#tablaPaquetes").DataTable(
+                {
+                    resposive: true,
+                    ordering: true,
+                    searching: true,
+                    scrollY: "300px",
+                    scrollX: true,
+                    scrollCollapse: true,
+                    lengthChange: true,
+                    "ajax":
+                    {
+                        url: '@Url.Action("ListaPaquetes", "HistorialPaquetes")',
+                        type: "GET",
+                        dataType: "json"
+                    },
+                    "columns":
+                        [
+                            { "className": "text-center", "data": "ID_Temporal" },
+                            { "className": "text-center", "data": "Guia" },
+                            { data: "PalabraClave" },
+                            { data: "RazonSocial" },
+                            { data: "fechaRecepcion" },
+                            { data: "fechaEntrega" },
+                            
+                            {
+                              defaultContent:   "<button class='btn bi-file-earmark-text-fill btn-editar' type='button'" +
+                                        "style = 'font-size:25px; display: true; ' ></button > "
+                            }
+                        ],
+
+                    "language":
+                    {
+                        "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                    }
+
+                });
+
+            $("#tablaPaquetes tbody").on("click", '.btn-editar', function () {
+                var filaseleccionada = $(this).closest("tr");
+                var data = tabladata.row(filaseleccionada).data();
+                console.log(data);
+                detalles(data);
+            })
+
+            function detalles(data) {
+                $('#txtDestinatario').val(data.NombreDestinatario);
+                $('#txtDireccion').val(data.Direccion);
+                $('#txtCondicion').val(data.Condicion);
+                $('#txtEstatus').val(data.Estatus);
+                $('#txtEvidencia').val(data.EvidenciaEntrega);
+                $('#FormModal').modal('show');
+            }
+
+        })
+
+        $("#btnFiltrar").on("click", function () {
+            var _entrega = $("#termino:checked").val();
+            var _ingreso = $("#aceptacion:checked").val();
+            var fechaInicial = $("#txtfInicial").val();
+            var fechaFinal = $("#txtfFinal").val();
+            var cliente = document.getElementById('Cliente').value;
+            var estatus = document.getElementById('Estatus').value;
+            //(string fecha_inicio, string fecha_final, string )
+            var url = '@Url.Action("ListaPaquetesFiltro_Administrador", "HistorialPaquetes")' +
+                "?fecha_inicio=" + fechaInicial +
+                "&fecha_final=" + fechaFinal +
+                "&recepcion=" + _ingreso +
+                "&entrega=" + _entrega +
+                "&cliente=" + cliente +
+                "&estatus=" + estatus
+
+            if (_ingreso != "on" && _entrega != "on" && cliente == "" && estatus == "") {
+                tipo_Erroneo();
+            } else if (fechaFinal != "" && fechaInicial == "") {
+                Rango_erroneo();
+            } else if (fechaFinal != "" && fechaInicial != "" && fechaInicial > fechaFinal) {
+                Rango_erroneo();
+            } else if (_ingreso == "on" && fechaFinal == "" && fechaInicial == "") {
+                tipo_Erroneo();
+            } else if (_entrega == "on" && fechaFinal == "" && fechaInicial == "") {
+                tipo_Erroneo();
+            }
+            tabladata.ajax.url(url).load();
+
+        })
+
+        function Rango_erroneo() {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Selecciona un rango de Fechas valido.',
+                width: '40%',
+                showConfirmButton: false,
+                position: 'top',
+            })
+        }
+        function tipo_Erroneo() {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Selecciona un tipo de Fecha o un Cliente',
+                width: '40%',
+                showConfirmButton: false,
+                position: 'top',
+            })
+        }
+
+        function exportar()
+        {
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Reporte_Administrador", "HistorialPaquetes")',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                }).done(function (data)
+                {
+                     if (data.fileName != "") {
+                     //use window.location.href for redirect to download action for download the file
+                     window.location.href = "@Url.RouteUrl(new
+                      { Controller = "HistorialPaquetes", Action = "Download"})/?file=" + data.fileName;
+                         }
+                });
+
+        }
+
+     
+
+
+    </script>
+}
+
+

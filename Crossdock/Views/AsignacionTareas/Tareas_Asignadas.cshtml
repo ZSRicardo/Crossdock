@@ -1,0 +1,54 @@
+﻿
+<div class="modal fade " id="modalHistorial" data-bs-backdrop="static" data-bs-keyboard="false" taria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header  bg-black  text-white">
+                <h3 class="modal-title" id="staticBackdropLabel">Tareas Asignadas-Operador</h3>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-10">
+                    <table id="tablaTareas" class="display mt-12" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Numero de Guia</th>
+                                <th>Fecha de asignacion</th>
+                                <th>Estatus</th>
+                                <th>Palabra Clave</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tabla_historial"></tbody>
+
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-12 mt-0">
+                    <div class="d-flex justify-content-evenly mt-4 mb-5 btn-group">
+                        <div class="mb-2">
+                            @Html.ActionLink("Aceptar", "LimpiarSeleccion", new { area = "" }, new { @class = "btn btn-secondary" })
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    function detalles(guia)
+    {
+        var url = '@Url.Action("Editar", "AsignacionTareas")' +
+            "?id=" + guia;
+        tabladata.ajax.url(url).load();
+
+    };
+</script>

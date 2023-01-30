@@ -1,0 +1,154 @@
+﻿@model Crossdock.Models.SeguimientoPaqs
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Nunito'>
+    <link href="~/Styles/dist/style.css" rel="stylesheet" />
+    <title>Rastreo de Envios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+   
+    @*<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400'>*@
+
+
+</head>
+<body>
+
+    <div class="contenedor-logo">
+    @*<svg version="1.1" class="logo" baseProfile="tiny" id="Layer_1">
+
+        <g>*@
+            <img src="~/Common/Imagenes/TAIMIMGO 2022 SLOGAN_Mesa de trabajo 1 (1).png" width="300" />
+
+        @*</g>
+    </svg>*@
+   </div>
+
+
+    <div class="form-group">
+        <div class="row align-items-center justify-content-center mt-5">
+            <div class="col-10">
+
+                @if (@TempData["Alert"] != null)
+                {
+                    <div class="alert alert-danger" role="alert @TempData["AlertCssClass"]">
+                        @TempData["Alert"]
+                        <div>
+                            <input type="submit" class="btn btn-danger btn-lg" value="Aceptar" data-bs-dismiss="alert" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="inner-header flex" style="display:@ViewBag.Busqueda">
+        <div id="cover">
+            <form action="@Url.Action("Index", "SeguimientoPaquetes")" method="post">
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="tb">
+                    <div class="td"><input type="text" placeholder="numero de guia" required name="Guia"></div>
+                    @Html.ValidationMessageFor(model => model.Guia)
+                    <div class="td" id="s-cover">
+                        <button type="submit" value="Rastrear">
+                            <div id="s-circle"></div>
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+   
+            <div class="padre">
+                <form method="post">
+                    <div class="inner-header flex hijo" style="display:@ViewBag.MuestraInformacion">
+                        <!-- partial:index.partial.html -->
+                        <div class="panel">
+                            <div class="title">
+                                <div class="heading">Detalles de entrega</div>
+                                @Html.EditorFor(model => model.Guia, new { htmlAttributes = new { @class = "tracking-id", Disabled = "disabled" } })
+                                <div class="icon"><i class="fa fa-truck fa-2x"></i></div>
+                            </div>
+                            <div class="items">
+                                <div class="item" data-state="label-created">
+                                    <div class="title">Recepcion</div>
+                                    <div class="datestamp">@*@Html.EditorFor(model => model.FechaRecepcion, new { htmlAttributes = new { @class = "tracking-id", Disabled = "disabled" } })*@
+
+                                    </div>
+                               @Html.EditorFor(model => model.FechaRecepcion, new { htmlAttributes = new { @class = "datestamp", Disabled = "disabled" } })
+                                  </div>
+ 
+                                       
+                            <div class="item" data-state="transit">
+                                <div class="title">En camino</div>
+                            </div>
+                            <div>
+                                <div class="item" data-state="delivered">
+                                    <div class="title">Entregado</div>
+                                    @Html.EditorFor(model => model.FechaEntrega, new { htmlAttributes = new { @class = "datestamp", Disabled = "disabled" } })
+
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </form>
+                </div>
+
+            <!-- partial -->
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js'></script>
+           
+    <script src="~/Styles/dist/script.js"></script>
+
+</body>
+
+</html>
+    <!-- partial -->
+    <!--
+    </html>
+        <!--Content ends-->
+    <!-- partial:index.partial.html -->
+    <!--<div class="panel">
+        <div class="title">
+            <div class="heading">Tracking Details</div>
+            <div class="tracking-id">#1Z06-E18A-6840</div>
+            <div class="icon"><i class="fa fa-truck fa-2x"></i></div>
+        </div>
+        <div class="items">
+            <div class="item" data-state="label-created">
+                <div class="title">Label created</div>
+                <div class="datestamp">2017-10-20 3:25pm</div>
+            </div>
+            <div class="item" data-state="picked-up">
+                <div class="title">Picked up</div>
+                <div class="datestamp">2017-10-20 5:45pm</div>
+            </div>
+            <div class="item" data-state="transit">
+                <div class="title">In Transit</div>
+                <div class="datestamp">2017-10-20 6:05pm</div>
+            </div>
+            <div class="item" data-state="delivered">
+                <div class="title">Delivered</div>
+                <div class="datestamp">2017-10-21 9:08pm</div>
+            </div>
+        </div>
+    </div>-->
+    <!-- partial -->
+    @*<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js'></script>*@
+    @*<script src="~/Styles/dist/script.js"></script>
+
+        </body>
+        </html>*@
+

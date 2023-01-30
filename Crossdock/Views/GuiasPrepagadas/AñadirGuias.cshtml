@@ -1,0 +1,63 @@
+﻿@model Crossdock.Models.GuiaPrepagada
+<!-- Modal agregar guias-->
+<div class="modal fade" id="modalAgregarGuias" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-info  text-white">
+                <h3 class="modal-title" id="staticBackdropLabel">Agregar Guias</h3>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="mb-6">
+                            <label for=" txtcliente" class="form-label">Cliente</label>
+                            @Html.DropDownList(name: "L_Clientes", selectList: null, (string)ViewBag.DCliente, new { @class = "form-control", id = "L_Clientes" })
+                            @Html.ValidationMessageFor(model => model.ClienteID, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-6 mt-6">
+                            <label class="mt-4" for=" txtcantidadGuias">Guias a agregar</label>
+                            <input type="number" class="form-control" id="txtCantidadGuias" />
+
+                        </div>
+
+                        <div class="mb-6 mt-6">
+                            <label class="mt-4" for=" txtfecha">Fecha de Termino</label>
+                            <input type="text" class="form-control" id="txtFecha" />
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+                <div class="col-sm-12 mt-3">
+                    <div class="d-flex justify-content-evenly mt-4 mb-5 btn-group">
+                        <div class="mb-2">
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                        <div class="mb-2">
+                            @Html.ActionLink("Aceptar", "Agregar", "GuiasPrepagadas",
+                                                          new { cliente = "s_cliente", cantidadGuias = "s_cantidad", fecha = "s_fecha" }, new { @class = "btn btn-info", id = "AceptarGuias", style = "margin-right: 10px" })
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (@TempData["Alert"] != null)
+{
+    <div class="mt-2 alert alert-dismissible fade show @TempData["AlertCssClass"]" role="alert">
+        @TempData["Alert"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}

@@ -1,0 +1,91 @@
+﻿.c-nav {
+    background: linear-gradient(90deg,hsl(0deg 0% 100% / 80%) 0,#f2f2f2 10%,#76bd22 70%,#007c39);
+    height: 80%;
+    padding: 2.8rem 4.2rem 0;
+    position: relative;
+}
+.row-contenedor {
+   /* background-color:gainsboro;*/
+    margin:6%;
+}
+
+.alert {
+    background-color:beige;
+    margin: 2%;
+    width:90%;
+    height: 20%;
+    margin-left: 5%;
+    margin-right: 5%;
+    color: black;
+    font-size:20px;
+    text-align:center;
+}
+.btn-danger {
+    margin: 2%;
+    text-align: center;
+}
+
+.img-top {
+    width: 20%;
+    height: 20%;
+}
+body{
+    margin:2%;
+}
+.card-header {
+    margin-top:30px;
+    color: black;
+    text-align: center;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:20px;
+    text-transform: none;
+}
+.search{
+    margin:2%;
+    text-align:center;
+    background:border-box;
+}
+
+.label-search {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 15px;
+    font-weight:bold;
+    background: border-box;
+    margin:2%;
+}
+.form-control {
+    margin: 2%;
+    width: 40%;
+    height: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    text-align: center;
+    font-size:15px;
+}
+
+.button-search {
+    margin: 2%;
+    width: 10%;
+    height: 10%;
+    margin-left: 45%;
+    margin-right: 45%;
+    text-align: center;
+}
+
+
+.container{
+    text-align:center;
+}
+.image-responsive {
+    text-align:center;
+    width: 30%;
+    height: 30%;
+    margin:2%;
+}
+.label-busqueda {
+    text-align: center;
+    font-size: 15px;
+}
+

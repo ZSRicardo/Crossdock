@@ -1,0 +1,43 @@
+﻿@model Crossdock.Models.Devoluciones
+
+@{
+    ViewBag.Title = "Delete";
+}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<div class="row align-items-center justify-content-center mt-3">
+    <div class="col-6 mt-3">
+        <h4 class="text-center">Eliminar devolución</h4>
+    </div>
+</div>
+
+<div class="row align-items-center justify-content-center mt-3">
+    <div class="col-md-7">
+        <form method="post">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="accordion-item">
+                <div class="accordion-body">
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Detalles, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.Detalles, new { htmlAttributes = new { @class = "form-control", @Disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Detalles, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="row align-items-center justify-content-center mt-3">
+                        <div class="col-6 mt-3">
+                            <h4 class="text-center">¿Estas seguro de eliminar esta devolución?</h4>
+                            <div class="d-flex justify-content-evenly mt-4 mb-5 btn-group">
+                                <input type="submit" value="Borrar" class="btn btn-outline-danger" />
+                                @Html.ActionLink("Regresar", "Index", new { area = "" }, new { @class = "btn btn-outline-warning" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,487 @@
+﻿@model Crossdock.Models.Roles
+
+@{
+    ViewBag.Title = "Edit";
+}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<div class="row align-items-center justify-content-center mt-3">
+    <div class="col-6 mt-3">
+        <h4 class="text-center">Editar rol</h4>
+    </div>
+</div>
+
+<div class="row align-items-center justify-content-center mt-3">
+    <div class="col-md-7">
+        <form method="post">
+            @Html.AntiForgeryToken()
+            <div class="accordion-item">
+                <div class="accordion-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.RolID)
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                    </div>
+
+                    <h5>Guías</h5>
+
+                    @if (Model.GeneracionGuias == true)
+                    {
+                        <span> | Generación de Guías: </span> @Html.CheckBoxFor(m => m.GeneracionGuias, new { @checked = "checked", style = "display:" + @ViewBag.GeneracionGuias })
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Generación de Guías: </span> @Html.CheckBoxFor(m => m.GeneracionGuias, new { @checked = "disabled" })
+                        <br />
+                    }
+
+                    <br />
+                    <h5>Historial de Guías</h5>
+                    @if (Model.HistorialGuias == true)
+                    {
+                        <span> | Historial de Guías: </span> @Html.CheckBoxFor(m => m.HistorialGuias, new { @checked = "checked", style = "display:" + @ViewBag.HistorialGuias })
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Historial de Guías: </span> @Html.CheckBoxFor(m => m.HistorialGuias, new { @checked = "disabled" })
+                        <br />
+                    }
+
+                    <br />
+                    <h5>Guías Prepagadas</h5>
+                    @if (Model.GuiasPrepagadas == true)
+                    {
+                        <span> | Guías Prepagadas: </span> @Html.CheckBoxFor(m => m.GuiasPrepagadas, new { @checked = "checked", style = "display:" + @ViewBag.GuiasPrepagadas })
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Guías Prepagadas: </span> @Html.CheckBoxFor(m => m.GuiasPrepagadas, new { @checked = "disabled" })
+                        <br />
+                    }
+
+                    <br />
+                    <h5>Paquetes por Llegar</h5>
+                    @if (Model.Notificaciones == true)
+                    {
+                        <span> | Paquetes por Llegar: </span> @Html.CheckBoxFor(m => m.Notificaciones, new { @checked = "checked", style = "display:" + @ViewBag.Notificaciones })
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Paquetes por Llegar: </span> @Html.CheckBoxFor(m => m.Notificaciones, new { @checked = "disabled" })
+                        <br />
+                    }
+
+                    <br />
+                    <h5>Cedis</h5>
+                    @if (Model.RecepcionPaquetes == true)
+                    {
+                        <span> | Recepcion de Paquetes: </span> @Html.CheckBoxFor(m => m.RecepcionPaquetes, new { @checked = "checked" })
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Recepcion de Paquetes: </span> @Html.CheckBoxFor(m => m.RecepcionPaquetes, new { @checked = "disabled" })
+                        <br />
+                    }
+
+
+                    <br />
+                    <h5>Paquetes</h5>
+                    @if (Model.SeguimientoPaquetes == true)
+                    {
+                        <span> | Seguimiento de Paquetes: </span> @Html.CheckBoxFor(m => m.SeguimientoPaquetes, new { @checked = "checked" })
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Seguimiento de Paquetes: </span> @Html.CheckBoxFor(m => m.SeguimientoPaquetes, new { @checked = "disabled" })
+                        <br />
+                    }
+
+                    <br>
+                    <h5>Historial Paquetes</h5>
+                    @if (Model.HistorialPaquetes == true)
+                    {
+                        <span> | Historial de Paquetes: </span> @Html.CheckBoxFor(m => m.HistorialPaquetes, new { @checked = "checked" })
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Historial de Paquetes: </span> @Html.CheckBoxFor(m => m.HistorialPaquetes, new { @checked = "disabled" })
+                        <br />
+                    }
+
+                    <br />
+                    <h5>Asignación de Tareas</h5>
+
+                    @if (Model.AsignacionTareas == true)
+                    {
+                        <span> | Asignación de Tareas: </span> @Html.CheckBoxFor(m => m.AsignacionTareas, new { @checked = "checked" })
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Asignación de Tareas: </span> @Html.CheckBoxFor(m => m.AsignacionTareas, new { @checked = "disabled" })
+                        <br />
+                    }
+
+                    <br />
+                    <h5>Historial de Tareas</h5>
+                    @if (Model.AsignacionTareas == true)
+                    {
+                        <span> | Historial de Tareas: </span> @Html.CheckBoxFor(m => m.HistorialTareas, new { @checked = "checked" })
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Historial de Tareas: </span> @Html.CheckBoxFor(m => m.HistorialTareas, new { @checked = "disabled" })
+                        <br />
+                    }
+
+
+
+                    <br />
+                    <h5>Catálogo Usuarios  </h5>
+
+                    @if (Model.UsuariosVisualizar == true)
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.UsuariosVisualizar, new { @checked = "checked" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.UsuariosCrear, new { @checked = "checked" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.UsuariosEditar, new { @checked = "checked" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.UsuariosEliminar, new { @checked = "checked" })*@
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.UsuariosVisualizar, new { @checked = "disabled" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.UsuariosCrear, new { @checked = "disabled" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.UsuariosEditar, new { @checked = "disabled" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.UsuariosEliminar, new { @checked = "disabled" })*@
+                        <br />
+                    }
+
+                    <br />
+                    <h5> Catálogo Bodegas  </h5>
+
+                    @if (Model.BodegasVisualizar == true)
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.BodegasVisualizar, new { @checked = "disabled" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.BodegasCrear, new { @checked = "checked" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.BodegasEditar, new { @checked = "checked" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.BodegasEliminar, new { @checked = "checked" })*@
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.BodegasVisualizar, new { @checked = "disabled" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.BodegasCrear, new { @checked = "disabled" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.BodegasEditar, new { @checked = "disabled" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.BodegasEliminar, new { @checked = "disabled" })*@
+                        <br />
+                    }
+
+                    <br />
+                    <h5> Catálogo Clientes </h5>
+
+                    @if (Model.ClientesVisualizar == true)
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.ClientesVisualizar, new { @checked = "checked" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.ClientesCrear, new { @checked = "checked" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.ClientesEditar, new { @checked = "checked" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.ClientesEliminar, new { @checked = "checked" })*@
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.ClientesVisualizar, new { @checked = "disabled" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.ClientesCrear, new { @checked = "disabled" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.ClientesEditar, new { @checked = "disabled" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.ClientesEliminar, new { @checked = "disabled" })*@
+                        <br />
+                    }
+
+                    <br />
+                    <h5>Catálogo Condiciones  </h5>
+
+                    @if (Model.CondicionesVisualizar == true)
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.CondicionesVisualizar, new { @checked = "checked" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.CondicionesCrear, new { @checked = "checked" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.CondicionesEditar, new { @checked = "checked" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.CondicionesEliminar, new { @checked = "checked" })*@
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.CondicionesVisualizar, new { @checked = "disabled" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.CondicionesCrear, new { @checked = "disabled" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.CondicionesEditar, new { @checked = "disabled" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.CondicionesEliminar, new { @checked = "disabled" })*@
+                        <br />
+                    }
+
+                    <br />
+                    <h5> Catálogo Delivery</h5>
+
+                    @if (Model.DeliveryVisualizar == true)
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.DeliveryVisualizar, new { @checked = "checked" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.DeliveryCrear, new { @checked = "checked" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.DeliveryEditar, new { @checked = "checked" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.DeliveryEliminar, new { @checked = "checked" })*@
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.DeliveryVisualizar, new { @checked = "disabled" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.DeliveryCrear, new { @checked = "disabled" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.DeliveryEditar, new { @checked = "disabled" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.DeliveryEliminar, new { @checked = "disabled" })*@
+                        <br />
+                    }
+
+                    <br />
+                    <h5>Catálogo Estatus Paquetes </h5>
+
+                    @if (Model.EstatusPaVisualizar == true)
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.EstatusPaVisualizar, new { @checked = "checked" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.EstatusPaCrear, new { @checked = "checked" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.EstatusPaEditar, new { @checked = "checked" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.EstatusPaEliminar, new { @checked = "checked" })*@
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.EstatusPaVisualizar, new { @checked = "disabled" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.EstatusPaCrear, new { @checked = "disabled" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.EstatusPaEditar, new { @checked = "disabled" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.EstatusPaEliminar, new { @checked = "disabled" })*@
+                        <br />
+                    }
+
+                    <br />
+                    <h5> Catálogo Estatus Tareas</h5>
+
+                    @if (Model.EstatusTaVisualizar == true)
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.EstatusTaVisualizar, new { @checked = "checked" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.EstatusTaCrear, new { @checked = "checked" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.EstatusTaEditar, new { @checked = "checked" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.EstatusTaEliminar, new { @checked = "checked" })*@
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.EstatusTaVisualizar, new { @checked = "disabled" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.EstatusTaCrear, new { @checked = "disabled" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.EstatusTaEditar, new { @checked = "disabled" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.EstatusTaEliminar, new { @checked = "disabled" })*@
+                        <br />
+                    }
+
+                    <br />
+                    <h5> Catálogo Operadores</h5>
+
+                    @if (Model.OperadoresVisualizar == true)
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.OperadoresVisualizar, new { @checked = "checked" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.OperadoresCrear, new { @checked = "checked" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.OperadoresEditar, new { @checked = "checked" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.OperadoresEliminar, new { @checked = "checked" })*@
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.OperadoresVisualizar, new { @checked = "disabled" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.OperadoresCrear, new { @checked = "disabled" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.OperadoresEditar, new { @checked = "disabled" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.OperadoresEliminar, new { @checked = "disabled" })*@
+                        <br />
+                    }
+
+                    <br />
+                    <h5> Catálogo Tipos de Operador</h5>
+
+                    @if (Model.TopVisualizar == true)
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.TopVisualizar, new { @checked = "checked" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.TopCrear, new { @checked = "checked" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.TopEditar, new { @checked = "checked" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.TopEliminar, new { @checked = "checked" })*@
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.TopVisualizar, new { @checked = "disabled" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.TopCrear, new { @checked = "disabled" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.TopEditar, new { @checked = "disabled" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.TopEliminar, new { @checked = "disabled" })*@
+                        <br />
+                    }
+
+                    <br />
+                    <h5>  Catálogo Roles   </h5>
+
+                    @if (Model.RolesVisualizar == true)
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.RolesVisualizar, new { @checked = "checked" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.RolesCrear, new { @checked = "checked" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.RolesEditar, new { @checked = "checked" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.RolesEliminar, new { @checked = "checked" })*@
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.RolesVisualizar, new { @checked = "disabled" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.RolesCrear, new { @checked = "disabled" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.RolesEditar, new { @checked = "disabled" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.RolesEliminar, new { @checked = "disabled" })*@
+                        <br />
+                    }
+
+                    <br />
+                    <h5>Catálogo Tipo de Entrega </h5>
+
+                    @if (Model.TenVisualizar == true)
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.TenVisualizar, new { @checked = "checked" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.TenCrear, new { @checked = "checked" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.TenEditar, new { @checked = "checked" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.TenEliminar, new { @checked = "checked" })*@
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.TenVisualizar, new { @checked = "disabled" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.TenCrear, new { @checked = "disabled" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.TenEditar, new { @checked = "disabled" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.TenEliminar, new { @checked = "disabled" })*@
+                        <br />
+                    }
+
+                    <br />
+                    <h5>Catálogo Unidades     </h5>
+
+                    @if (Model.UnidadesVisualizar == true)
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.UnidadesVisualizar, new { @checked = "checked" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.UnidadesCrear, new { @checked = "checked" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.UnidadesEditar, new { @checked = "checked" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.UnidadesEliminar, new { @checked = "checked" })*@
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.UnidadesVisualizar, new { @checked = "disabled" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.UnidadesCrear, new { @checked = "disabled" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.UnidadesEditar, new { @checked = "disabled" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.UnidadesEliminar, new { @checked = "disabled" })*@
+                        <br />
+                    }
+
+                    <br />
+                    <h5> Catálogo Tipo de Unidades </h5>
+
+                    @if (Model.TunVisualizar == true)
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.TunVisualizar, new { @checked = "checked" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.TunCrear, new { @checked = "checked" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.TunEditar, new { @checked = "checked" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.TunEliminar, new { @checked = "checked" })*@
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.TunVisualizar, new { @checked = "disabled" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.TunCrear, new { @checked = "disabled" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.TunEditar, new { @checked = "disabled" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.TunEliminar, new { @checked = "disabled" })*@
+                        <br />
+                    }
+
+                    <br />
+                    <h5> Catálogo Zonas</h5>
+                    @if (Model.ZonasVisualizar == true)
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.ZonasVisualizar, new { @checked = "checked" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.ZonasCrear, new { @checked = "checked" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.ZonasEditar, new { @checked = "checked" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.ZonasEliminar, new { @checked = "checked" })*@
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.ZonasVisualizar, new { @checked = "disabled" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.ZonasCrear, new { @checked = "disabled" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.ZonasEditar, new { @checked = "disabled" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.ZonasEliminar, new { @checked = "disabled" })*@
+                        <br />
+                    }
+
+                    <br />
+                    <h5>Catálogo Motivos de Devolución   </h5>
+
+                    @if (Model.MotivosVisualizar == true)
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.MotivosVisualizar, new { @checked = "checked" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.MotivosCrear, new { @checked = "checked" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.MotivosEditar, new { @checked = "checked" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.MotivosEliminar, new { @checked = "checked" })*@
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.MotivosVisualizar, new { @checked = "disabled" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.MotivosCrear, new { @checked = "disabled" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.MotivosEditar, new { @checked = "disabled" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.MotivosEliminar, new { @checked = "disabled" })*@
+                        <br />
+                    }
+
+                    <br />
+                    <h5>Coberturas</h5>
+
+                    @if (Model.CoberturasVisualizar == true)
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.CoberturasVisualizar, new { @checked = "checked" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.CoberturasCrear, new { @checked = "checked" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.CoberturasEditar, new { @checked = "checked" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.CoberturasEliminar, new { @checked = "checked" })*@
+                        <br />
+                    }
+                    else
+                    {
+                        <span> | Visualizar: </span>@Html.CheckBoxFor(m => m.CoberturasVisualizar, new { @checked = "disabled" })
+                        @*<span> | Crear: </span>@Html.CheckBoxFor(m => m.CoberturasCrear, new { @checked = "disabled" })
+                            <span> | Editar: </span>@Html.CheckBoxFor(m => m.CoberturasEditar new { @checked = "disabled" })
+                            <span> | Eliminar: </span>@Html.CheckBoxFor(m => m.CoberturasEliminar, new { @checked = "disabled" })*@
+                        <br />
+                    }
+
+                    <hr />
+
+                    <div class="row align-items-center justify-content-center mt-3">
+                        <div class="col-6 mt-3">
+                            <div class="d-flex justify-content-evenly mt-4 mb-5 btn-group">
+                                <input type="submit" value="Guardar" class="btn btn-outline-success" />
+                                @Html.ActionLink("Regresar", "Index", new { area = "" }, new { @class = "btn btn-outline-warning" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

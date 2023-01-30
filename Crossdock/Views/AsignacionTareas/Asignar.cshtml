@@ -1,0 +1,250 @@
+﻿@model IEnumerable<Crossdock.Models.Paquetes>
+@using GridMvc.Html
+@{
+    ViewBag.Title = "Asignar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+
+
+<div class="card-header mt-5"><b><FONT size="5">Selección de Tareas.</FONT></b></div>
+
+<form method="post" id="form_">
+    <div class="card-body">
+
+
+        <table id="paquetes" class="display mt-2" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Indice</th>
+                    <th>Cliente</th>
+                    <th>Numero de Guia</th>
+                    <th>Fecha de recepcion</th>
+                    <th>Numero de Intentos</th>
+                    <th>Zona</th>
+                </tr>
+            </thead>
+        </table>
+        <hr />
+
+
+        <div class="row align-items-center ">
+            <div class="col-md-12">
+                <div class="row" style="float:left">
+
+                    <div class="col-lg-2" style=" margin: 4px">
+                        <h4><b>Operador</b></h4>
+                    </div>
+
+                    <div class="col-lg-5" style="margin: 4px">
+                        @Html.DropDownList(name: "L_Operadores", selectList: null, (string)ViewBag.DOperador, new { @class = "form-control", id = "L_Operadores" })
+                    </div>
+
+                    <div class="col-lg-2" style=" margin: 4px">
+                        <button class="btn btn-success" id="btnaceptar"> Aceptar</button>
+                    </div>
+                    <div class="col-lg-2" style="float: right; margin: 4px">
+                        @Html.ActionLink("Cancelar", "AsignacionManual", new { area = "" }, new { @class = " form control btn btn-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+@section Scripts{
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script type="text/javascript">
+        function Selecciona_Tarea() {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Selecciona una tarea',
+                width: '40%',
+                showConfirmButton: false,
+                position: 'top',
+            })
+        }
+
+        function Selecciona_paquete() {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Selecciona al menos un paquete',
+                width: '40%',
+                showConfirmButton: false,
+                position: 'top',
+            })
+        }
+
+
+        function Selecciona_Operador() {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Selecciona un operador',
+                width: '40%',
+                showConfirmButton: false,
+                position: 'top',
+            })
+        }
+
+        $(function () {
+
+            $("#SeleccionTodo").click(function () {
+
+                var zona = $("#L_Zonas").val();
+                var operador = $("#L_Operadores").val();
+                this.href = this.href.replace("s_operador", operador);
+                this.href = this.href.replace("s_zona", zona);
+            })
+        })
+
+
+        $(function () {
+
+            $("#btnAceptar").click(function () {
+
+                var zona = $("#L_Zonas").val();
+                var operador = $("#L_Operadores").val();
+                this.href = this.href.replace("s_operador", operador);
+
+            })
+        })
+
+    </script>
+
+
+}
+
+
+<script>
+        $(document).ready(function () {
+           // var rows_selected = [];
+            var table = $("#paquetes").DataTable({
+                ajax: {
+                    url: '@Url.Action("LLena_tabla", "AsignacionTareas")',
+                    type: 'GET',
+                    dataType: 'json'
+                },
+                columnDefs: [{
+                    data: 'ID_Temporal',
+                    targets: 0,
+                    checkboxes: { seletRow: true }
+                },
+                    { "className": "text-center", "data": "ID_Temporal" },
+                    { "className": "text-center", "data": "Razon_Social_Cliente" },
+                    { "className": "text-center", "data": "Guia" },
+                    { "className": "text-center", "data": "FechaIngresoBodega" },
+                    { "className": "text-center", "data": "Intento" },
+                    { "className": "text-center", "data": "Zona" }
+
+                ],
+                select: { style: 'multi' },
+                order: [[1, 'asc']],
+
+                columns: [{ "className": "text-center", "data": "ID_Temporal" },
+                    { "className": "text-center", "data": "ID_Temporal" },
+                    { "className": "text-center", "data": "Razon_Social_Cliente" },
+                    { "className": "text-center", "data": "Guia" },
+                    { "className": "text-center", "data": "FechaIngresoBodega" },
+                    { "className": "text-center", "data": "Intento" },
+                    { "className": "text-center", "data": "Zona" }
+
+                ],
+                language:
+                {
+                    "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                }
+            })
+
+
+
+            $("#form_").on('submit', function (e) {
+             
+                    var form = this
+            var rows_selected = table.column(0).checkboxes.selected();
+            var operador = document.getElementById("L_Operadores").value;
+            document.getElementById("btnaceptar").disabled = true;
+            if (rows_selected.join(",") == null || rows_selected.join(",") == "") {
+                
+                document.getElementById("btnaceptar").disabled = false;
+                setTimeout(Selecciona_paquete(),3000);
+               
+            } else if (operador == "")
+            {
+                
+                document.getElementById("btnaceptar").disabled = false;
+                setTimeout(Selecciona_Operador(), 3000);
+               
+                
+            }else
+            {
+                  
+                   //  Iterate over all selected checkboxes
+                    $.each(rows_selected, function (index, rowId) {
+                        // Create a hidden element
+                        $(form).append(
+                            $('<input>').attr('type', 'hidden').attr('name', 'id[]').val(rowId)
+                        );
+                    })
+            $("#seleccion_").text(rows_selected.join(","))
+            $('input[name="id\[\]"]', form).remove()
+
+
+            $.ajax({
+                type:"get",
+                dataType :"json",
+                url: '@Url.Action("Aceptar", "AsignacionTareas")'
+                    + "?lista=" + rows_selected.join(".")
+                    + "&operador=" + operador
+            }).done(function (data)
+                {
+
+                if (data.fileName == "1") {
+                    //use window.location.href for redirect to download action for download the file
+                    window.location.href = "@Url.Action("AsignacionManual", "AsignacionTareas")";
+                }
+                });
+            }
+
+          
+
+
+
+
+                })
+
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

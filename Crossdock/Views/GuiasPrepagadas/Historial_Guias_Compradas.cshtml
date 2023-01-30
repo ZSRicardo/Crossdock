@@ -1,0 +1,61 @@
+﻿
+<div class="modal fade" id="modalHistorial" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header  bg-black  text-white">
+                <h3 class="modal-title" id="staticBackdropLabel">Historial - Guias Adquiridas</h3>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+
+                    <table class="table table-bordered">
+                        <thead style="background-color:aliceblue; color:black">
+                            <tr>
+                                <td>Numero de Guias Adquiridas</td>
+                                <td>Fecha de compra</td>
+                                <td>Fecha de Vencimiento</td>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla_historial"></tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <div class="col-sm-12 mt-3">
+                    <div class="d-flex justify-content-evenly mt-4 mb-5 btn-group">
+                        <div class="mb-2">
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+   
+
+<script>
+    function detalles(guia)
+    {
+        
+        $.ajax({
+           
+                    type: "POST",
+            url: '@Url.Action("Detalles", "GuiasPrepagadas")'+    
+                    "?id="+guia,
+                    contentType: "application/json; charset=utf-8",
+                  dataType: "text",
+            }).done(function (res)
+                {
+                    $("#tabla_historial").html(res);
+                });
+    };
+</script>

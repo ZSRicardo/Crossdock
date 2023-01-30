@@ -1,0 +1,82 @@
+-----------------------------------------------------------------------------
+Date : 15/11/2022 12:33:35 p. m.
+Usuario ID: 2
+Usuario: Vanessa castro
+
+System.ArgumentNullException
+Message : El valor no puede ser nulo.
+Nombre del parámetro: value
+StackTrace :    en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en Crossdock.Controllers.ZonasController.Delete(String id) en C:\Users\David\Downloads\Crossdock-main\Crossdock\Controllers\ZonasController.cs:línea 221
+-----------------------------------------------------------------------------
+Date : 15/11/2022 12:52:32 p. m.
+Usuario ID: 2
+Usuario: Vanessa castro
+
+System.ArgumentNullException
+Message : El valor no puede ser nulo.
+Nombre del parámetro: value
+StackTrace :    en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en Crossdock.Controllers.ZonasController.Delete(String id) en C:\Users\David\Downloads\Crossdock-main\Crossdock\Controllers\ZonasController.cs:línea 221
+-----------------------------------------------------------------------------
+Date : 15/11/2022 01:17:34 p. m.
+Usuario ID: 2
+Usuario: Vanessa castro
+
+Newtonsoft.Json.JsonReaderException
+Message : Unexpected character encountered while parsing value: A. Path '', line 1, position 1.
+StackTrace :    en Newtonsoft.Json.JsonTextReader.ReadStringValue(ReadType readType)
+   en Newtonsoft.Json.JsonTextReader.ReadAsString()
+   en Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en Crossdock.Controllers.ZonasController.Details(String id) en C:\Users\David\Downloads\Crossdock-main\Crossdock\Controllers\ZonasController.cs:línea 77
+-----------------------------------------------------------------------------
+Date : 15/11/2022 01:17:35 p. m.
+Usuario ID: 2
+Usuario: Vanessa castro
+
+Newtonsoft.Json.JsonReaderException
+Message : Unexpected character encountered while parsing value: A. Path '', line 1, position 1.
+StackTrace :    en Newtonsoft.Json.JsonTextReader.ReadStringValue(ReadType readType)
+   en Newtonsoft.Json.JsonTextReader.ReadAsString()
+   en Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en Crossdock.Controllers.ZonasController.Details(String id) en C:\Users\David\Downloads\Crossdock-main\Crossdock\Controllers\ZonasController.cs:línea 77
+-----------------------------------------------------------------------------
+Date : 15/11/2022 01:17:36 p. m.
+Usuario ID: 2
+Usuario: Vanessa castro
+
+Newtonsoft.Json.JsonReaderException
+Message : Unexpected character encountered while parsing value: A. Path '', line 1, position 1.
+StackTrace :    en Newtonsoft.Json.JsonTextReader.ReadStringValue(ReadType readType)
+   en Newtonsoft.Json.JsonTextReader.ReadAsString()
+   en Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en Crossdock.Controllers.ZonasController.Details(String id) en C:\Users\David\Downloads\Crossdock-main\Crossdock\Controllers\ZonasController.cs:línea 77
+-----------------------------------------------------------------------------
+Date : 15/11/2022 01:18:14 p. m.
+Usuario ID: 2
+Usuario: Vanessa castro
+
+Newtonsoft.Json.JsonReaderException
+Message : Unexpected character encountered while parsing value: A. Path '', line 1, position 1.
+StackTrace :    en Newtonsoft.Json.JsonTextReader.ReadStringValue(ReadType readType)
+   en Newtonsoft.Json.JsonTextReader.ReadAsString()
+   en Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en Crossdock.Controllers.ZonasController.Details(String id) en C:\Users\David\Downloads\Crossdock-main\Crossdock\Controllers\ZonasController.cs:línea 77
